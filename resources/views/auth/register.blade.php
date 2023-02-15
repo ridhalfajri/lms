@@ -1,77 +1,98 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <title>Home</title>
+    <link rel="stylesheet" href="assets/styles/style.min.css">
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+    <!-- Waves Effect -->
+    <link rel="stylesheet" href="assets/plugin/waves/waves.min.css">
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+</head>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+<body>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+    <div id="single-wrapper">
+        <form action="{{ route('register') }}" method="POST" class="frm-single">
+            @csrf
+            <div class="inside">
+                <div class="title"><strong>Ninja</strong>Admin</div>
+                <!-- /.title -->
+                <div class="frm-title">{{ __('Register') }}</div>
+                <!-- /.frm-title -->
+                <div class="frm-input"><input type="email" name="email" id="email"
+                        placeholder="{{ __('Email Address') }}"
+                        class="frm-inp @error('email') is-invalid @enderror"value="{{ old('email') }}" required
+                        autofocus autocomplete="email"><i class="fa fa-envelope frm-ico"></i>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
+                <!-- /.frm-input -->
+                <div class="frm-input">
+                    <input id="name" type="text" placeholder="{{ __('Name') }}"
+                        class="frm-inp @error('name') is-invalid @enderror"name="name" value="{{ old('name') }}"
+                        required autocomplete="name"><i class="fa fa-user frm-ico"></i>
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <!-- /.frm-input -->
+                <div class="frm-input"><input id="password" type="password" placeholder="{{ __('Password') }}"
+                        class="frm-inp @error('password') is-invalid @enderror"name="password" required
+                        autocomplete="new-password"><i class="fa fa-lock frm-ico"></i>
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="frm-input"><input id="password-confirm" type="password"
+                        placeholder="{{ __('Confirm Password') }}"
+                        class="frm-inp @error('password') is-invalid @enderror"name="password_confirmation" required
+                        autocomplete="new-password"><i class="fa fa-lock frm-ico"></i>
+                </div>
+                <!-- /.frm-input -->
+                <!-- /.clearfix -->
+                <button type="submit" class="frm-submit">{{ __('Register') }}<i
+                        class="fa fa-arrow-circle-right"></i></button>
+                <!-- /.row -->
+                <a href="{{ route('login') }}" class="a-link"><i class="fa fa-sign-in"></i>Already have account?
+                    Login.</a>
+                <div class="frm-footer">NinjaAdmin © 2016.</div>
+                <!-- /.footer -->
             </div>
-        </div>
+            <!-- .inside -->
+        </form>
+        <!-- /.frm-single -->
     </div>
-</div>
-@endsection
+    <!--/#single-wrapper -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+  <script src="assets/script/html5shiv.min.js"></script>
+  <script src="assets/script/respond.min.js"></script>
+ <![endif]-->
+    <!--
+ ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/scripts/jquery.min.js"></script>
+    <script src="assets/scripts/modernizr.min.js"></script>
+    <script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugin/nprogress/nprogress.js"></script>
+    <script src="assets/plugin/waves/waves.min.js"></script>
+
+    <script src="assets/scripts/main.min.js"></script>
+</body>
+
+</html>
