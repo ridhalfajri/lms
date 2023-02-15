@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Upload extends Model
 {
     use HasFactory;
+    protected $table = "uploads";
+    protected $guarded = [];
+    protected $primaryKey = 'id';
     public function user()
     {
         return $this->belongsTo(User::class);
