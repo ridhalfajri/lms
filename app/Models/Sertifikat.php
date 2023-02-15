@@ -11,4 +11,17 @@ class Sertifikat extends Model
     protected $table = "sertifikat";
     protected $guarded = [];
     protected $primaryKey = 'id';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function instansi()
+    {
+        return $this->belongsTo(Instansi::class);
+    }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

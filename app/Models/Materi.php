@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Materi extends Model
 {
     use HasFactory;
+    protected $table = "materi";
+    protected $guarded = [];
+    protected $primaryKey = 'id';
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

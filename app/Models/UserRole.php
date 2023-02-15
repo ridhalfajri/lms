@@ -11,4 +11,9 @@ class UserRole extends Model
     protected $table = "user_role";
     protected $guarded = [];
     protected $primaryKey = 'id';
+
+    public function materi_akses()
+    {
+        return $this->hasMany(MateriAkses::class);
+    }
 }

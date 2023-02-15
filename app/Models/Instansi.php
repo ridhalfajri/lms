@@ -11,4 +11,8 @@ class Instansi extends Model
     protected $table = "instansi";
     protected $guarded = [];
     protected $primaryKey = 'id';
+    public function sertifikat()
+    {
+        return $this->hasMany(Sertifikat::class);
+    }
 }
