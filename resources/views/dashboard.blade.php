@@ -1,1 +1,1 @@
-@extends('layouts.temp')
+@extends('layouts.index')

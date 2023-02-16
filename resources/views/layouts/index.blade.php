@@ -25,18 +25,16 @@
     <!-- Sweet Alert -->
     <link rel="stylesheet" href="{{ asset('assets/plugin/sweet-alert/sweetalert.css') }}">
 
-    <!-- Percent Circle -->
-    <link rel="stylesheet" href="{{ asset('assets/plugin/percircle/css/percircle.css') }}">
 
-    <!-- Chartist Chart -->
-    <link rel="stylesheet" href="{{ asset('assets/plugin/chart/chartist/chartist.min.css') }}">
 
-    <!-- FullCalendar -->
-    <link rel="stylesheet" href="{{ asset('assets/plugin/fullcalendar/fullcalendar.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugin/fullcalendar/fullcalendar.print.css') }}" media='print'>
 
-    <!-- Color Picker -->
-    <link rel="stylesheet" href="{{ asset('assets/color-switcher/color-switcher.min.css') }}">
+    {{-- Data table --}}
+    <link rel="stylesheet" href="{{ asset('assets/plugin/datatables/media/css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css') }}">
+
+
+    @stack('style')
 </head>
 
 <body>
@@ -85,21 +83,17 @@
     <!-- Google Chart -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <!-- chart.js Chart -->
-    <script src="{{ asset('assets/plugin/chart/chartjs/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/scripts/chart.chartjs.init.min.js') }}"></script>
 
-    <!-- FullCalendar -->
-    <script src="{{ asset('assets/plugin/moment/moment.js') }}"></script>
-    <script src="{{ asset('assets/plugin/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script src="{{ asset('assets/scripts/fullcalendar.init.js') }}"></script>
+    <!-- Data Tables -->
+    <script src="{{ asset('assets/plugin/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugin/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/scripts/datatables.demo.min.js') }}"></script>
 
-    <!-- Sparkline Chart -->
-    <script src="{{ asset('assets/plugin/chart/sparkline/jquery.sparkline.min.js') }}"></script>
-    <script src="{{ asset('assets/scripts/chart.sparkline.init.min.js') }}"></script>
 
-    <script src="{{ asset('assets/scripts/main.min.js') }}"></script>
-    <script src="{{ asset('assets/color-switcher/color-switcher.min.js') }}"></script>
+    @stack('script')
+
 </body>
 
 </html>
