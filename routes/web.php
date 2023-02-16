@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SoalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('soal', SoalController::class);
+
 Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+Route::get('/user/{id}/hapus', [UserController::class, 'hapus']);
+Route::get('/user/json', [UserController::class, 'json'])->name('user.json');
 
 Auth::routes();
 
