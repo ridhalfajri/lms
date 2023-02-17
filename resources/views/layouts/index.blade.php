@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home - Zeiss Template</title>
+    <title>{{ $title }}</title>
 
     <!-- Main Styles -->
     <link rel="stylesheet" href="{{ asset('assets/styles/style.min.css') }}">
@@ -57,10 +57,11 @@
         <div class="main-content">
             @yield('content')
             <!-- /.row -->
-            @include('partials.footer')
         </div>
         <!-- /.main-content -->
+        {{-- @include('partials.footer') --}}
     </div>
+
     <!--/#wrapper -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -83,6 +84,10 @@
     <!-- Google Chart -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+    <script src="{{ asset('assets/scripts/main.min.js') }}"></script>
+
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="{{ asset('assets/plugin/sweet-alert/sweetalert.css') }}">
 
     <!-- Data Tables -->
     <script src="{{ asset('assets/plugin/datatables/media/js/jquery.dataTables.min.js') }}"></script>
@@ -90,6 +95,9 @@
     <script src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/datatables.demo.min.js') }}"></script>
+    {{-- Sweet Alert --}}
+    <script src="{{ asset('assets/plugin/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/scripts/sweetalert.init.min.js') }}"></script>
 
 
     @stack('script')

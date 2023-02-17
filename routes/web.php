@@ -23,13 +23,17 @@ Route::get('/', function () {
 Route::resource('soal', SoalController::class);
 
 Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 Route::get('/user/{id}/edit', [UserController::class, 'edit']);
-Route::get('/user/{id}/hapus', [UserController::class, 'hapus']);
+Route::delete('/user/{id}', [UserController::class, 'hapus']);
 Route::get('/user/json', [UserController::class, 'json'])->name('user.json');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', $data = [
+        'title' => 'Dashboard'
+    ]);
 })->name('dashboard');
