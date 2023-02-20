@@ -26,6 +26,7 @@ Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{id}', [UserController::class, 'hapus']);
 Route::get('/user/json', [UserController::class, 'json'])->name('user.json');
 

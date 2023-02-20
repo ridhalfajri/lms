@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             'instansi' => ['required'],
             'role' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8'],
+            'password' => ['min:8'],
         ];
     }
 }

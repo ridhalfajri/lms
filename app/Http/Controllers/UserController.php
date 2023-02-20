@@ -46,6 +46,31 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail(decrypt($id));
+        $instansi = Instansi::all('id', 'nama');
+        $role = UserRole::all('id', 'role');
+        $title = 'Edit Pengguna';
+        return view('users.edit', compact('user', 'instansi', 'role', 'title'));
+    }
+
+    public function update(UserRequest $request, $id)
+    {
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->nip = $request->nip;
+        $user->unit_kerja = $request->unit_kerja;
+        $user->jabatan = $request->jabatan;
+        $user->no_telepon = $request->no_telepon;
+        $user->instansi_id = $request->instansi;
+        $user->unit_kerja = $request->unit_kerja;
+        $user->role_id = $request->role;
+        $user->is_active = 1;
+        $user->email = $request->email;
+        // if ($request->password != nul) {
+        //     # code...
+        // }
+        $user->save();
+        return redirect('user')->with('save', 'data berhasil disimpan');
     }
 
     public function hapus($id)
