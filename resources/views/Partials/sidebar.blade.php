@@ -10,7 +10,7 @@
         </li>
         <li>
             <a class="waves-effect @if (request()->segment(1) == 'soal') active @endif" href="{{ route('soal.index') }}"><i
-                    class="menu-icon mdi mdi-account-multiple "></i><span>Bank Soal</span></a>
+                    class="menu-icon mdi mdi-book-open "></i><span>Bank Soal</span></a>
         </li>
     </ul>
     <!-- /.menu js__accordion -->

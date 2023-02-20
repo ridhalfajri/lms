@@ -84,14 +84,6 @@
                         name: 'aksi',
                     },
                 ],
-                columnDefs: [{
-                    'sortable': false,
-                    'searchable': false,
-                    'targets': [0, -1]
-                }],
-                order: [
-                    1, 'asc'
-                ]
             })
 
         });
