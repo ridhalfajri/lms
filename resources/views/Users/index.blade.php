@@ -103,66 +103,78 @@
     @endif
 
     <script>
-        $('#tbl-penggunas+').delegate('a.delete', 'click', function(e) {
-            e.preventDefault();
-            let that = $(this);
+        'use strict';
+        $(function() {
+            $('#tbl-pengguna').delegate('a.delete', 'click', function(e) {
+                e.preventDefault();
+                let that = $(this);
 
-            swal({
+                swal({
                     title: "Hapus",
                     text: "Apakah kamu yakin akan menghapus user ini?",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it!",
-                    cancelButtonText: "No, cancel plx!",
+                    confirmButtonText: "Hapus",
+                    cancelButtonText: "Batal",
                     closeOnConfirm: false,
                     closeOnCancel: false,
                     confirmButtonColor: '#f60e0e',
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        delete_data(that.data('id')).then(function(hasil) {
-                            if (hasil.error == false) {
-                                swal({
-                                    title: "Terhapus!",
-                                    text: "User berhasil dihapus",
-                                    type: 'success',
-                                    confirmButtonColor: '#304ffe'
-                                });
-                            } else {
-                                table.ajax.reload();
-                                swal("Data tidak dihapus", {
-                                    icon: "error"
-                                })
+                }, function(isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "{{ url('user') }}/" + that.data('id'),
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            dataType: 'JSON',
+                            data: {
+                                _method: 'DELETE'
                             }
-                        }).catch(function(err) {
-                            console.log(err);
                         })
+                        $('#tbl-pengguna').DataTable().ajax.reload();
+                        // window.location.reload();
+                        swal({
+                            title: "Terhapus",
+                            text: "User berhasil dihapus!",
+                            type: "success",
+                            confirmButtonColor: '#304ffe',
+                        });
                     } else {
-                        swal("File anda aman")
+                        swal({
+                            title: "Batal",
+                            text: "User tidak dihapus!",
+                            type: "error",
+                            confirmButtonColor: '#f60e0e',
+                        });
                     }
-                })
+                });
+                return false;
+
+
+            })
+
+
+            function delete_data(id) {
+                return new Promise(function(resolve, reject) {
+                    $.ajax({
+                        url: "{{ url('user') }}/" + id,
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        // dataType: 'JSON',
+                        data: {
+                            _method: 'DELETE'
+                        }
+                    }).done(function(hasil) {
+                        resolve(hasil);
+                    }).fail(function() {
+                        reject('Gagal menghapus data')
+                    })
+                });
+            }
         })
-
-
-        function delete_data(id) {
-            return new Promise(function(resolve, reject) {
-                $.ajax({
-                    url: "{{ url('user') }}/" + id,
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    // dataType: 'JSON',
-                    data: {
-                        _method: 'DELETE'
-                    }
-                }).done(function(hasil) {
-                    resolve(hasil);
-                }).fail(function() {
-                    reject('Gagal menghapus data')
-                })
-            });
-        }
     </script>
 @endpush

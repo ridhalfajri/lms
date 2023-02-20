@@ -96,6 +96,7 @@
     <script src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/datatables.demo.min.js') }}"></script>
     {{-- Sweet Alert --}}
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="{{ asset('assets/plugin/sweet-alert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/sweetalert.init.min.js') }}"></script>
 

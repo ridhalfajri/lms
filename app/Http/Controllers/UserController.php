@@ -50,7 +50,11 @@ class UserController extends Controller
 
     public function hapus($id)
     {
-        dd(decrypt($id));
+        $user = User::findOrFail($id);
+        $user->delete();
+        $result['error'] = false;
+        $result['message'] = 'Data layanan pelatihan berhasil dihapus';
+        return response()->json($result, 200);
     }
 
     public function json()
