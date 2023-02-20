@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// datatable
+Route::get('/soal/json', [SoalController::class, 'json'])->name('soal.json');
+Route::get('/user/json', [UserController::class, 'json'])->name('user.json');
 
 Route::resource('soal', SoalController::class);
 
@@ -28,7 +31,6 @@ Route::post('/user/store', [UserController::class, 'store'])->name('user.store')
 Route::get('/user/{id}/edit', [UserController::class, 'edit']);
 Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{id}', [UserController::class, 'hapus']);
-Route::get('/user/json', [UserController::class, 'json'])->name('user.json');
 
 Auth::routes();
 
