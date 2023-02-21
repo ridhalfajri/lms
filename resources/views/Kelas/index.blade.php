@@ -3,7 +3,7 @@
     <div class="col-xs-12">
 
         <div class="box-content">
-            <div class="btn-group dropdown-btn-group pull-right mb-6"><a href="{{ route('jadwal.create') }}"
+            <div class="btn-group dropdown-btn-group pull-right mb-6"><a href="{{ route('kelas.create') }}"
                     class="btn btn-primary btn-xs waves-effect waves-light">Tambah
                     Kelas</a>
             </div>
