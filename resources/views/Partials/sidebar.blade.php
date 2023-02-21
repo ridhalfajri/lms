@@ -12,6 +12,10 @@
             <a class="waves-effect @if (request()->segment(1) == 'soal') active @endif" href="{{ route('soal.index') }}"><i
                     class="menu-icon mdi mdi-book-open "></i><span>Bank Soal</span></a>
         </li>
+        <li>
+            <a class="waves-effect @if (request()->segment(1) == 'kelas') active @endif" href="{{ route('kelas.index') }}"><i
+                    class="menu-icon mdi mdi-collage "></i><span>Kelas</span></a>
+        </li>
     </ul>
     <!-- /.menu js__accordion -->
 </div>

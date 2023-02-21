@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,10 @@ Route::get('/', function () {
 // datatable
 Route::get('/soal/json', [SoalController::class, 'json'])->name('soal.json');
 Route::get('/user/json', [UserController::class, 'json'])->name('user.json');
+Route::get('/kelas/json', [KelasController::class, 'json'])->name('kelas.json');
 
 Route::resource('soal', SoalController::class);
+Route::resource('kelas', KelasController::class);
 
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

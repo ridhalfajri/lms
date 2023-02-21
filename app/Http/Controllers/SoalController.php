@@ -104,7 +104,7 @@ class SoalController extends Controller
     {
         $soal->delete();
         $result['error'] = false;
-        $result['message'] = 'Data layanan pelatihan berhasil dihapus';
+        $result['message'] = 'Data kelas berhasil dihapus';
         return response()->json($result, 200);
     }
 
