@@ -3228,7 +3228,7 @@ function (a, b) {
                     return m.on = !0, h.appendChild(m), k.skew = m, k.transform(o), k
                 }, c._engine.setSize = function (a, b) {
                     var d = this.canvas.style;
-                    return this.width = a, this.height = b, a == +a && (a += "px"), b == +b && (b += "px"), d.width = a, d.height = b, d.clip = "rect(0 " + a " " + b + " 0)", this._viewBox && c._engine.setViewBox.apply(this, this._viewBox), this
+                    return this.width = a, this.height = b, a == +a && (a += "px"), b == +b && (b += "px"), d.width = a, d.height = b, d.clip = "rect(0 " + a + " " + b + " 0)", this._viewBox && c._engine.setViewBox.apply(this, this._viewBox), this
                 }, c._engine.setViewBox = function (a, b, d, e, f) {
                     c.eve("raphael.setViewBox", this, this._viewBox, [a, b, d, e, f]);
                     var h, i, j = this.width,
