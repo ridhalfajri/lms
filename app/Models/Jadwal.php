@@ -15,7 +15,7 @@ class Jadwal extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
-    public function user()
+    public function instruktur()
     {
         return $this->belongsTo(User::class);
     }

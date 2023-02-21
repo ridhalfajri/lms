@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="{{ asset('assets/plugin/datatables/media/css/dataTables.bootstrap.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/plugin/datatables/extensions/Buttons/css/buttons.dataTables.min.css') }}">
 
 
     @stack('style')
@@ -92,9 +94,14 @@
     <!-- Data Tables -->
     <script src="{{ asset('assets/plugin/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugin/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/plugin/datatables/media/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/datatables.demo.min.js') }}"></script>
+    <script src=" {{ asset('assets/plugin/datatables/media/js/dataTables.buttons.min.js') }} "></script>
+    <script src="{{ asset('assets/plugin/datatables/extensions/Buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="{{ asset('assets/plugin/datatables/extensions/Buttons/js/buttons.html5.min.js') }}"></script>
     {{-- Sweet Alert --}}
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="{{ asset('assets/plugin/sweet-alert/sweetalert.min.js') }}"></script>

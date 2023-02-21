@@ -3,11 +3,11 @@
     <div class="col-xs-12">
 
         <div class="box-content">
-            <div class="btn-group dropdown-btn-group pull-right mb-6"><a href="{{ route('kelas.create') }}"
+            <div class="btn-group dropdown-btn-group pull-right mb-6"><a href="{{ route('jadwal.create') }}"
                     class="btn btn-primary btn-xs waves-effect waves-light">Tambah
-                    Soal</a>
+                    Kelas</a>
             </div>
-            <h4 class="box-title">Default</h4>
+            <h4 class="box-title">{{ $title }}</h4>
             <table id="tbl-kelas" class="table table-striped table-bordered display" style="width:100%">
                 <thead>
                     <tr>
@@ -43,6 +43,10 @@
                 // scrollY: "200px",
                 scrollCollapse: !0,
                 paging: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel'
+                ],
                 processing: true,
                 serverSide: true,
                 responsive: true,
@@ -116,7 +120,7 @@
                 }, function(isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: "{{ url('kelas') }}/" + that.data('id'),
+                            url: "{{ url('jadwal') }}/" + that.data('id'),
                             method: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'

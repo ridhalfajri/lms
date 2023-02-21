@@ -8,7 +8,7 @@
         @method('PUT')
         <div class="col-lg-6 col-xs-12">
             <div class="box-content card white">
-                <h4 class="box-title">Tambah</h4>
+                <h4 class="box-title">Edit</h4>
                 <!-- /.box-title -->
                 <div class="card-content">
                     <div class="form-group @error('nama') has-error @enderror">

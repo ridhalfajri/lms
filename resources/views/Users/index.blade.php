@@ -48,6 +48,10 @@
                 // scrollY: "200px",
                 scrollCollapse: !0,
                 paging: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel'
+                ],
                 processing: true,
                 serverSide: true,
                 ajax: '{!! route('user.json') !!}',

@@ -3,31 +3,27 @@
     <div class="col-xs-12">
 
         <div class="box-content">
-            <div class="btn-group dropdown-btn-group pull-right mb-6"><a href="{{ route('soal.create') }}"
+            <div class="btn-group dropdown-btn-group pull-right mb-6"><a href="{{ route('jadwal.create') }}"
                     class="btn btn-primary btn-xs waves-effect waves-light">Tambah
-                    Soal</a>
+                    Jadwal Instruktur</a>
             </div>
             <h4 class="box-title">{{ $title }}</h4>
-            <table id="tbl-soal" class="table table-striped table-bordered display" style="width:100%">
+            <table id="tbl-jadwal" class="table table-striped table-bordered display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Soal</th>
-                        <th>Opsi 1</th>
-                        <th>Opsi 2</th>
-                        <th>Opsi 3</th>
-                        <th>Opsi 4</th>
-                        <th>Jawaban</th>
+                        <th>Kelas</th>
+                        <th>Instruktur</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Akhir</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Soal</th>
-                        <th>Opsi 1</th>
-                        <th>Opsi 2</th>
-                        <th>Opsi 3</th>
-                        <th>Opsi 4</th>
-                        <th>Jawaban</th>
+                        <th>Kelas</th>
+                        <th>Instruktur</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Akhir</th>
                         <th>Aksi</th>
                     </tr>
                 </tfoot>
@@ -41,7 +37,7 @@
 @push('script')
     <script>
         $(function(e) {
-            e("#tbl-soal").DataTable({
+            e("#tbl-jadwal").DataTable({
                 // scrollY: "200px",
                 scrollCollapse: !0,
                 paging: true,
@@ -58,30 +54,22 @@
                 ordering: true,
                 info: true,
                 autoWidth: false,
-                ajax: '{!! route('soal.json') !!}',
+                ajax: '{!! route('jadwal.json') !!}',
                 columns: [{
-                        data: 'pertanyaan',
-                        name: 'pertanyaan'
+                        data: 'nama_kelas',
+                        name: 'kls.nama'
                     },
                     {
-                        data: 'opsi1',
-                        name: 'opsi1',
+                        data: 'nama_instruktur',
+                        name: 'instruktur.name',
                     },
                     {
-                        data: 'opsi2',
-                        name: 'opsi2',
+                        data: 'tgl_mulai',
+                        name: 'kls.tgl_mulai',
                     },
                     {
-                        data: 'opsi3',
-                        name: 'opsi3',
-                    },
-                    {
-                        data: 'opsi4',
-                        name: 'opsi4',
-                    },
-                    {
-                        data: 'jawaban',
-                        name: 'jawaban',
+                        data: 'tgl_akhir',
+                        name: 'kls.tgl_akhir',
                     },
                     {
                         data: 'aksi',
@@ -108,13 +96,13 @@
     <script>
         'use strict';
         $(function() {
-            $('#tbl-soal').delegate('a.delete', 'click', function(e) {
+            $('#tbl-jadwal').delegate('a.delete', 'click', function(e) {
                 e.preventDefault();
                 let that = $(this);
 
                 swal({
                     title: "Hapus",
-                    text: "Apakah kamu yakin akan menghapus soal ini?",
+                    text: "Apakah kamu yakin akan menghapus Kelas ini?",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
@@ -126,7 +114,7 @@
                 }, function(isConfirm) {
                     if (isConfirm) {
                         $.ajax({
-                            url: "{{ url('soal') }}/" + that.data('id'),
+                            url: "{{ url('jadwal') }}/" + that.data('id'),
                             method: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -136,18 +124,18 @@
                                 _method: 'DELETE'
                             }
                         })
-                        $('#tbl-soal').DataTable().ajax.reload();
+                        $('#tbl-jadwal').DataTable().ajax.reload();
                         // window.location.reload();
                         swal({
                             title: "Terhapus",
-                            text: "Soal berhasil dihapus!",
+                            text: "Jadwal instruktur berhasil dihapus!",
                             type: "success",
                             confirmButtonColor: '#304ffe',
                         });
                     } else {
                         swal({
                             title: "Batal",
-                            text: "Soal tidak dihapus!",
+                            text: "Jadwal instruktur tidak dihapus!",
                             type: "error",
                             confirmButtonColor: '#f60e0e',
                         });

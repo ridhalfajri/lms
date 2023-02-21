@@ -9,8 +9,6 @@
         <div class="ico-item">
             <img src="http://placehold.it/80x80" alt="" class="ico-img">
             <ul class="sub-ico-item">
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Blog</a></li>
                 <li><a
                         href="{{ route('logout') }}"onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
