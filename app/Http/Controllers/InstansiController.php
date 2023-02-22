@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InstansiRequest;
 use App\Models\Instansi;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class InstansiController extends Controller
 {
@@ -14,7 +16,8 @@ class InstansiController extends Controller
      */
     public function index()
     {
-        //
+        $title = "Daftar Instansi";
+        return view('instansi.index', compact('title'));
     }
 
     /**
@@ -24,7 +27,8 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Tambah Instansi";
+        return view('instansi.create', compact('title'));
     }
 
     /**
@@ -33,9 +37,13 @@ class InstansiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InstansiRequest $request)
     {
-        //
+        $instansi = new Instansi();
+        $instansi->nama = $request->nama;
+        $instansi->jenis = $request->jenis;
+        $instansi->save();
+        return redirect()->route('instansi.index')->with('save', 'Data berhasil disimpan');
     }
 
     /**
@@ -55,9 +63,11 @@ class InstansiController extends Controller
      * @param  \App\Models\Instansi  $instansi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Instansi $instansi)
+    public function edit($instansi)
     {
-        //
+        $instansi = Instansi::findOrFail(decrypt($instansi));
+        $title = "Daftar Instansi";
+        return view('instansi.edit', compact('title', 'instansi'));
     }
 
     /**
@@ -67,9 +77,13 @@ class InstansiController extends Controller
      * @param  \App\Models\Instansi  $instansi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Instansi $instansi)
+    public function update(InstansiRequest $request, Instansi $instansi)
     {
-        //
+        $instansi->nama = $request->nama;
+        $instansi->jenis = $request->jenis;
+        $instansi->save();
+
+        return redirect()->route('instansi.index')->with('save', 'data berhasil diubah');
     }
 
     /**
@@ -80,6 +94,21 @@ class InstansiController extends Controller
      */
     public function destroy(Instansi $instansi)
     {
-        //
+        $instansi->delete();
+        $result['error'] = false;
+        $result['message'] = 'Data kelas berhasil dihapus';
+        return response()->json($result, 200);
+    }
+
+    public function json()
+    {
+        $instansi = Instansi::select('id', 'nama', 'jenis');
+        return DataTables::of($instansi)
+            ->addColumn('no', '')
+            ->addColumn('aksi', function (Instansi $instansi) {
+                return '<a href="/instansi/' . encrypt($instansi->id) . '/edit"  class="btn btn-xs btn-info waves-effect waves-light">Edit</a> <a href="javascript:void(0);" data-id=' . $instansi->id . ' class="btn btn-xs btn-danger waves-effect waves-light delete">Hapus</a>';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 }

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\UserController;
+use App\Models\Instansi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +28,11 @@ Route::get('/soal/json', [SoalController::class, 'json'])->name('soal.json');
 Route::get('/user/json', [UserController::class, 'json'])->name('user.json');
 Route::get('/kelas/json', [KelasController::class, 'json'])->name('kelas.json');
 Route::get('/jadwal/json', [JadwalController::class, 'json'])->name('jadwal.json');
+Route::get('/instansi/json', [InstansiController::class, 'json'])->name('instansi.json');
 
-Route::resource('soal', SoalController::class);
+Route::resource('soal', SoalController::class)->middleware('admin');
 Route::resource('kelas', KelasController::class);
+Route::resource('instansi', InstansiController::class);
 Route::resource('jadwal', JadwalController::class);
 
 Route::get('/user', [UserController::class, 'index'])->name('user');

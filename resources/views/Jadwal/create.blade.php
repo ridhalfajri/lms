@@ -1,7 +1,5 @@
 @extends('layouts.index')
-@push('style')
-    <link rel="stylesheet" href="{{ asset('assets/plugin/daterangepicker/daterangepicker.css') }}">
-@endpush
+
 @section('content')
     <form action="{{ route('jadwal.store') }}" method="POST" id="frm-jadwal">
         @csrf
@@ -52,18 +50,3 @@
             </div>
     </form>
 @endsection
-
-@push('script')
-    <script src="{{ asset('assets/plugin/moment/moment.js') }}"></script>
-    <script src="{{ asset('assets/plugin/daterangepicker/daterangepicker.js') }}"></script>
-    <script>
-        "use strict";
-        $(function(e) {
-            e(".input-daterange-datepicker").length && e(".input-daterange-datepicker").daterangepicker({
-                buttonClasses: ["btn", "btn-sm"],
-                applyClass: "btn-default",
-                cancelClass: "btn-primary"
-            })
-        })
-    </script>
-@endpush
