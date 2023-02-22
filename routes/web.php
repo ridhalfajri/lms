@@ -3,6 +3,7 @@
 use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\UserController;
 use App\Models\Instansi;
@@ -34,6 +35,7 @@ Route::resource('soal', SoalController::class)->middleware('admin');
 Route::resource('kelas', KelasController::class);
 Route::resource('instansi', InstansiController::class);
 Route::resource('jadwal', JadwalController::class);
+Route::resource('materi', MateriController::class);
 
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

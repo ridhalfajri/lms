@@ -25,10 +25,10 @@
                         <label for="tipe">Tipe</label>
                         <select class="form-control" name="tipe">
                             <option value="">Pilih tipe kelas</option>
-                            <option value="Beginner" @if ($kelas->tipe == 'Beginner') selected @endif>Beginner</option>
-                            <option value="Intermediate" @if ($kelas->tipe == 'Intermediate') selected @endif>Intermediate
+                            <option value="Beginner" @if (old('tipe', $kelas->tipe) == 'Beginner') selected @endif>Beginner</option>
+                            <option value="Intermediate" @if (old('tipe', $kelas->tipe) == 'Intermediate') selected @endif>Intermediate
                             </option>
-                            <option value="Advanced" @if ($kelas->tipe == 'Advanced') selected @endif>Advanced</option>
+                            <option value="Advanced" @if (old('tipe', $kelas->tipe) == 'Advanced') selected @endif>Advanced</option>
                         </select>
                         @error('tipe')
                             <div class="invalid-feedback text-danger">

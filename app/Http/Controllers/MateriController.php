@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MateriRequest;
 use App\Models\Materi;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MateriController extends Controller
 {
@@ -14,7 +15,9 @@ class MateriController extends Controller
      */
     public function index()
     {
-        //
+        $materi = Materi::all();
+        $title = "Daftar Materi";
+        return view('materi.index', compact('title', 'materi'));
     }
 
     /**
@@ -24,7 +27,8 @@ class MateriController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Daftar Materi";
+        return view('materi.create', compact('title'));
     }
 
     /**
@@ -33,9 +37,23 @@ class MateriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MateriRequest $request)
     {
-        //
+        $materi = new Materi();
+        $materi->user_id = auth()->user()->id;
+        $materi->level = $request->tipe;
+        $materi->judul = $request->judul;
+        $materi->deskripsi = $request->deskripsi;
+        if ($request->is_show == 1) {
+            $materi->is_show = $request->is_show;
+        } else {
+            $materi->is_show = 0;
+        }
+        if ($request->file('dokumen_materi')) {
+            $materi->path = $request->file('dokumen_materi')->store('dokumen-materi');
+        }
+        $materi->save();
+        return redirect()->route('materi.index')->with('save', 'materi berhasil di upload');
     }
 
     /**
@@ -55,9 +73,11 @@ class MateriController extends Controller
      * @param  \App\Models\Materi  $materi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Materi $materi)
+    public function edit($materi)
     {
-        //
+        $title = "Edit Materi";
+        $materi = Materi::findOrFail(decrypt($materi));
+        return view('materi.edit', compact('title', 'materi'));
     }
 
     /**
@@ -67,9 +87,25 @@ class MateriController extends Controller
      * @param  \App\Models\Materi  $materi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materi $materi)
+    public function update(MateriRequest $request, Materi $materi)
     {
-        //
+        $materi->user_id = auth()->user()->id;
+        $materi->level = $request->tipe;
+        $materi->judul = $request->judul;
+        $materi->deskripsi = $request->deskripsi;
+        if ($request->is_show == 1) {
+            $materi->is_show = $request->is_show;
+        } else {
+            $materi->is_show = 0;
+        }
+        if ($request->file('dokumen_materi')) {
+            if ($request->old_dokumen) {
+                Storage::delete($request->old_dokumen);
+            }
+            $materi->path = $request->file('dokumen_materi')->store('dokumen-materi');
+        }
+        $materi->save();
+        return redirect()->route('materi.index')->with('save', "Materi berhasil diubah");
     }
 
     /**
@@ -80,6 +116,12 @@ class MateriController extends Controller
      */
     public function destroy(Materi $materi)
     {
-        //
+        if ($materi->path) {
+            Storage::delete($materi->path);
+        }
+        $materi->delete();
+        $result['error'] = false;
+        $result['message'] = 'Data kelas berhasil dihapus';
+        return response()->json($result, 200);
     }
 }

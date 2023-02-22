@@ -26,6 +26,11 @@
                 href="{{ route('instansi.index') }}"><i
                     class="menu-icon mdi mdi-xing-box "></i><span>Instansi</span></a>
         </li>
+        <li>
+            <a class="waves-effect @if (request()->segment(1) == 'materi') active @endif"
+                href="{{ route('materi.index') }}"><i
+                    class="menu-icon mdi mdi-file-document "></i><span>Materi</span></a>
+        </li>
     </ul>
     <!-- /.menu js__accordion -->
 </div>

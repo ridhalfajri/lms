@@ -24,9 +24,10 @@
                         <label for="tipe">Tipe</label>
                         <select class="form-control" name="tipe">
                             <option value="">Pilih tipe kelas</option>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Advanced">Advanced</option>
+                            <option value="Beginner" @if (old('tipe') == 'Beginner') selected @endif>Beginner</option>
+                            <option value="Intermediate" @if (old('tipe') == 'Intermediate') selected @endif>Intermediate
+                            </option>
+                            <option value="Advanced" @if (old('tipe') == 'Advanced') selected @endif>Advanced</option>
                         </select>
                         @error('tipe')
                             <div class="invalid-feedback text-danger">
